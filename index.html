@@ -357,6 +357,21 @@
           <small class="erro"></small>
         </div>
         <div class="campo">
+          <label>Data de expedição do RG</label>
+          <input type="date" id="conjDataExpRg">
+          <small class="erro"></small>
+        </div>
+        <div class="campo">
+          <label>Nacionalidade</label>
+          <input type="text" id="conjNacionalidade" value="Brasileira">
+          <small class="erro"></small>
+        </div>
+        <div class="campo">
+          <label>Naturalidade (cidade/UF)</label>
+          <input type="text" id="conjNaturalidade" placeholder="Ex.: Lages/SC">
+          <small class="erro"></small>
+        </div>
+        <div class="campo">
           <label>Profissão</label>
           <input type="text" id="conjProfissao" placeholder="Profissão">
           <small class="erro"></small>
@@ -596,6 +611,10 @@ function validar(render){
     if(!val("conjNasc")) fail("conjNasc","Informe a data de nascimento do cônjuge");
     else if(!dataOk("conjNasc")) fail("conjNasc","Data de nascimento do cônjuge inválida");
     if(!val("conjRg")) fail("conjRg","Informe o RG do cônjuge");
+    if(!val("conjDataExpRg")) fail("conjDataExpRg","Informe a data de expedição do RG do cônjuge");
+    else if(!dataOk("conjDataExpRg")) fail("conjDataExpRg","Data de expedição do RG do cônjuge inválida");
+    if(!val("conjNacionalidade")) fail("conjNacionalidade","Informe a nacionalidade do cônjuge");
+    if(!val("conjNaturalidade")) fail("conjNaturalidade","Informe a naturalidade do cônjuge");
     if(!val("conjProfissao")) fail("conjProfissao","Informe a profissão do cônjuge");
     if(!telOk(val("conjCelular"))) fail("conjCelular","Celular do cônjuge incompleto");
   }
@@ -680,7 +699,10 @@ function montarResumo(wpp){
     t += linha("Nome", val("conjNome"));
     t += linha("CPF", val("conjCpf"));
     t += linha("RG", val("conjRg"));
+    t += linha("Expedição RG", dataBR(val("conjDataExpRg")));
     t += linha("Nascimento", dataBR(val("conjNasc")));
+    t += linha("Nacionalidade", val("conjNacionalidade"));
+    t += linha("Naturalidade", val("conjNaturalidade"));
     t += linha("Profissão", val("conjProfissao"));
     t += linha("Celular", val("conjCelular"));
   }
